@@ -23,7 +23,7 @@ body {
   height: 30rem;
   padding: .3rem;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 div.item {
@@ -35,6 +35,7 @@ div.item {
 
 .item.display {
   flex: .5;
+  max-width: 40%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
