@@ -58,8 +58,8 @@ p {
   width: 100%;
   text-align: right;
   align-self: flex-end;
-  border-top: 1px solid rgba(195, 195, 196, 0.719);
-  border-right: 1px solid rgba(195, 195, 196, 0.719);
+  border-top: 1px solid rgba(230, 230, 230, 0.5);
+  border-right: 1px solid rgba(230, 230, 230, 0.5);
   color: pink;
 }
 
@@ -67,12 +67,43 @@ button {
   font-family: 'Fira Code','Courier New', Courier, monospace;
   font-size: 1.5rem;
   font-weight: lighter;
+  background: rgba(230, 230, 230, 0.247);
   color: rgb(185, 185, 185);
   width: 25%;
   height: 20%;
   border: none;
   border-bottom: 1px solid white;
   border-left: 1px solid white;
+}
+
+button:hover {
+  color: rgb(99, 99, 99);
+  border-radius: .4rem;
+  scale: .98;
+}
+
+button.num:hover {
+  background: linear-gradient(60deg, rgba(238,174,202,.3) 0%, rgba(148,187,233,.3) 100%);
+}
+
+button.num:focus-within {
+  background: linear-gradient(60deg, rgba(238,174,202,.3) 0%, rgba(148,187,233,.3) 100%);
+}
+
+button.op:hover {
+  background: rgba(148,187,233,.3);
+}
+
+button.op:focus-within {
+  background: rgba(148,187,233,.3);
+}
+
+#enter:hover {
+  background: rgba(238,174,202,.3);
+}
+
+#enter:focus-within {
+  background: rgba(238,174,202,.3);
 }
 
 #enter {
@@ -82,5 +113,21 @@ button {
 button.return {
   align-self: flex-end;
 }
+
+button.bck {
+  text-align: right;
+  width: fit-content;
+}
+
+button.return:hover {
+  background: rgb(99, 99, 99);
+  color: white;
+}
+
+button.return:focus-within {
+  background: rgb(99, 99, 99);
+  color: white;
+}
+
 
 
