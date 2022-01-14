@@ -66,10 +66,10 @@ p {
 
 button {
   font-family: 'Fira Code','Courier New', Courier, monospace;
-  font-size: 1.5rem;
-  font-weight: lighter;
-  background: rgba(230, 230, 230, 0.247);
-  color: rgb(185, 185, 185);
+  font-size: 1.8rem;
+  font-weight: bolder;
+  background: rgba(230, 230, 230, 0.25);
+  color: rgba(185, 185, 185, 0.7);
   width: 25%;
   height: 20%;
   border: none;
