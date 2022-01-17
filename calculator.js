@@ -3,6 +3,8 @@ const btnNum = document.querySelectorAll('button.num');
 const btnDot = document.querySelector('button.dot');
 const btnOp = document.querySelectorAll('button.main-op');
 const btnEnter = document.querySelector('#enter');
+const btnBacksp = document.querySelector('button.bck');
+const btnReset = document.querySelector('button.reset');
 displayText.textContent = '0'; //default
 
 const storedValues = [];
@@ -31,15 +33,22 @@ btnDot.addEventListener('click', () => {
 
 //choose one operator at time, if 2 values return the result
 function handleOperators (e) {
+  let resultValue;
   clean(storedNumberKey);
-  let resultValue = '0';
   if(storedValues.length === 1) {
 		storedOperator[0] = e.target.dataset.key;
   } else if(storedValues.length === 2 && storedOperator.length === 1) {
 		resultValue = returnResult(storedOperator[0], storedValues[0], storedValues[1]);
     storedOperator[0] = e.target.dataset.key;
   }
+  if (resultValue !== undefined) {
   displayText.textContent = `${resultValue}`;
+  return;
+} else if (storedValues[0]) {
+  displayText.textContent = `${storedValues[0]}`
+  return
+  }
+  displayText.textContent = `0`;
 }
 btnOp.forEach(btn => btn.addEventListener('click', handleOperators));
 
@@ -143,3 +152,28 @@ function adjustResultScNotation(value) {
     return value;
   }
 }
+
+function eraseOperand(e) {
+  const textLength = displayText.textContent.length;
+
+  if (displayText.textContent == '0') {
+      return;
+    } else if (textLength < 2) {
+        clean(storedNumberKey);
+        displayText.textContent = '0';
+        return;
+      } else if (storedNumberKey.length === 0) {
+          displayText.textContent = '';
+        }
+  displayText.textContent = displayText.textContent.slice(0, textLength - 1);
+  storedNumberKey.pop();
+}
+btnBacksp.addEventListener('mousedown', eraseOperand);
+        
+
+function restart(e) {
+  const myClean = [storedNumberKey, storedOperator, storedValues];
+  displayText.textContent = '0';
+  clean(...myClean);
+}  
+btnReset.addEventListener('click', restart);
