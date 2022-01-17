@@ -5,12 +5,24 @@ const btnOp = document.querySelectorAll('button.main-op');
 const btnEnter = document.querySelector('#enter');
 const btnBacksp = document.querySelector('button.bck');
 const btnReset = document.querySelector('button.reset');
+const btnPerc = document.querySelector('.perc');
 displayText.textContent = '0'; //default
 
 const storedValues = [];
 const storedOperator = [];
 const storedNumberKey = [];
 
+btnPerc.addEventListener('click', makePercentage) 
+
+function makePercentage (e) {
+  if(storedValues[0] && storedOperator[0] && !storedValues[1])  {
+    storedValues[0] = percentage(storedValues[0]);
+    displayText.textContent = `${storedValues[0]}`;
+  } else if (storedValues[1] && storedValues[0] && storedOperator[0]) {
+    storedValues[1] = percentage(storedValues[1]);
+    displayText.textContent = `${storedValues[1]}`;
+  }
+}
 
 //number button event.
 function handleValueConstructure (e) {
@@ -177,3 +189,4 @@ function restart(e) {
   clean(...myClean);
 }  
 btnReset.addEventListener('click', restart);
+
