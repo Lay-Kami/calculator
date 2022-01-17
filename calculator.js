@@ -13,7 +13,6 @@ const storedOperator = [];
 const storedNumberKey = [];
 
 btnPerc.addEventListener('click', makePercentage) 
-
 function makePercentage (e) {
   if(storedValues[0] && storedOperator[0] && !storedValues[1])  {
     storedValues[0] = percentage(storedValues[0]);
@@ -21,6 +20,19 @@ function makePercentage (e) {
   } else if (storedValues[1] && storedValues[0] && storedOperator[0]) {
     storedValues[1] = percentage(storedValues[1]);
     displayText.textContent = `${storedValues[1]}`;
+  }
+}
+
+btnSwitch = document.querySelector('.switch');
+btnSwitch.addEventListener('click', switchSigns);
+
+function switchSigns (e) {
+  if(storedValues[0] && !storedValues[1])  {
+    storedValues[0] = storedValues[0] * (-1);
+    displayText.textContent = storedValues[0];
+  } else if (storedValues[1] && storedValues[0] && storedOperator[0]) {
+    storedValues[1] = storedValues[1] * (-1);
+    displayText.textContent = storedValues[1];
   }
 }
 
