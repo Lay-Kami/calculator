@@ -32,28 +32,31 @@ btnDot.addEventListener('click', () => {
 //choose one operator at time, if 2 values return the result
 function handleOperators (e) {
   clean(storedNumberKey);
+  let resultValue = '0';
   if(storedValues.length === 1) {
 		storedOperator[0] = e.target.dataset.key;
   } else if(storedValues.length === 2 && storedOperator.length === 1) {
-		returnResult(storedOperator[0], storedValues[0], storedValues[1]);
+		resultValue = returnResult(storedOperator[0], storedValues[0], storedValues[1]);
     storedOperator[0] = e.target.dataset.key;
   }
-  displayText.textContent = `${storedValues[0]}`
+  displayText.textContent = `${resultValue}`;
 }
 btnOp.forEach(btn => btn.addEventListener('click', handleOperators));
 
-//operate for 2 values
+//OPERATE '='
 function operateHandler(e) {
   clean(storedNumberKey);
   if(storedValues.length === 1 && storedOperator.length === 1) {
     storedValues[1] = storedValues[0];
   }
+  let resultValue = '0';
   if(storedValues.length === 2 && storedOperator.length === 1) {
-      returnResult(storedOperator[0], storedValues[0], storedValues[1]);
+       resultValue = returnResult(storedOperator[0], storedValues[0], storedValues[1]);
     }
-  displayText.textContent = `${storedValues[0]}`
+    displayText.textContent = `${resultValue}`;
 }
 btnEnter.addEventListener('click', operateHandler);
+
 
 
 //clean value
@@ -121,8 +124,22 @@ function power(a, b) {
 }
 
 function returnResult(op, value1, value2) {
-  const result = operate(op, value1, value2);
+  let result = operate(op, value1, value2);
   clean(storedValues);
   clean(storedOperator);
   storedValues[0] = result;
+  return adjustResultScNotation(result);
+  // storedValues[0] = result;
+}
+
+function adjustResultScNotation(value) {
+  if (value > 1e6) {
+    return value = value.toExponential(2);
+  } else if (value < 0.9 && toString(value).length > 6) {
+    return value = value.toPrecision(2);
+  } else if (toString(value).length > 9) {
+    return value = value.toFixed(2);
+  } else {
+    return value;
+  }
 }
